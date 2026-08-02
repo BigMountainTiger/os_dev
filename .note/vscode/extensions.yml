@@ -1,0 +1,5 @@
+nasm:
+  1:
+    name: x86 and x86_64 Assembly
+    author: 13xforever
+    description: Cutting edge x86 and x86_64 assembly syntax highlighting

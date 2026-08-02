@@ -1,0 +1,16 @@
+qemu-system:
+  reference: https://www.qemu.org/
+  note:
+    1: qemu-system is an embrella package that contains all artchitecture-specific packages
+    2: we can install qemu-system-x86 to save spaces (Note *the package name and executable name are diferent)
+  install: |
+    sudo apt update
+    sudo apt install qemu-system-x86
+    qemu-system-x86_64 --version
+
+nasm:
+  reference: https://www.nasm.us/
+  install: |
+    sudo apt update
+    sudo apt install nasm
+    nasm --version
