@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+if [ ! -v PROJECT_BASE ] || [ ! -v PROJECT_NAME ]; then
+	echo "Variables PROJECT_BASE and PROJECT_NAME need to be set"
+	exit 1
+fi
+
+cd $PROJECT_BASE/$PROJECT_NAME && pwd
+
+git fetch
+
+echo && echo "Changes in the last commit:"
+git diff HEAD~1 HEAD --name-only && echo
+
+if [[ $# -eq 0 ]]; then
+	git log -2
+else
+	git log "$@"
+fi

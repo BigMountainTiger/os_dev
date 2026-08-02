@@ -1,0 +1,28 @@
+#!/bin/bash
+
+ALLOWED_BRANCH="master"
+COMMIT_MESSAGE="Updated the os_dev"
+
+if [ ! -v PROJECT_BASE ] || [ ! -v PROJECT_NAME ]; then
+	echo "Variables PROJECT_BASE and PROJECT_NAME need to be set"
+fi
+
+cd $PROJECT_BASE/$PROJECT_NAME && pwd
+
+ACTIVE_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ "$ACTIVE_BRANCH" != "$ALLOWED_BRANCH" ]; then
+    echo "Disabled for all branches except $ACTIVE_BRANCH"
+    exit 1
+fi
+
+git reset --soft HEAD~
+git add -A && git commit -m "$COMMIT_MESSAGE"
+git push -f
+
+echo && git fetch
+echo -e "Wait for a second ...\n" && sleep 1
+
+echo "Changes in the last commit:"
+git diff HEAD~1 HEAD --name-only && echo
+
+git log -2
