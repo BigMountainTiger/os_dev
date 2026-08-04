@@ -1,5 +1,11 @@
 nasm:
-  1:
+  1: 
+    name: NASM Code Lens
+    author: maziac
+    description: NASM, MASM, gas and sjasmplus language server.
+
+  2: 
     name: x86 and x86_64 Assembly
     author: 13xforever
-    description: Cutting edge x86 and x86_64 assembly syntax highlighting
+    note: It looks this extension only provides syntax highlighting, no intellisense
+    

@@ -8,5 +8,9 @@
                 "PROJECT_NAME": ""
             }
         }
+    },
+    "asm-code-lens.assembler": "nasm (x86)",
+    "files.associations": {
+        "*.{asm,inc,s,nasm,yasm}": "asm-x86-nasm"
     }
 }
