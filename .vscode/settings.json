@@ -11,6 +11,6 @@
     },
     "asm-code-lens.assembler": "nasm (x86)",
     "files.associations": {
-        "*.{asm,inc,s,nasm,yasm}": "asm-x86-nasm"
+        "*.{asm,inc,s,nasm,yasm,------------------------------------------}": "asm-x86-nasm"
     }
 }

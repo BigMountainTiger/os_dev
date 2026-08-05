@@ -14,3 +14,20 @@ nasm:
     sudo apt update
     sudo apt install nasm
     nasm --version
+
+build-essential:
+  What is Included:
+    gcc: The GNU C compiler
+    g++: The GNU C++ compiler
+    make: A tool to automate the compilation process
+    libc6-dev: Standard C library development files and headers
+    dpkg-dev: Tools to build Debian source packages
+  install: |
+    sudo apt update
+    sudo apt install build-essential
+    gcc --version
+
+grub-mkrescue:
+  note: It is utility of the GRUB bootloader package ecosystem
+  install: |
+    sudo apt install grub-common xorriso mtools
