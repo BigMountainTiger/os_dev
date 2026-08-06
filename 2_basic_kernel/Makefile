@@ -27,18 +27,24 @@ $(x86_64_asm_object_files): $(x86_64_object_dir)/%.o : $(x86_64_source_dir)/%.as
 	mkdir -p $(dir $@) && \
 	nasm -f elf64 $(patsubst $(x86_64_object_dir)/%.o, $(x86_64_source_dir)/%.asm, $@) -o $@
 
-local_target_dir := targets
-build_target_dir := $(build_dir)/targets
+iso_dir := targets/x86_64/iso
+local_iso_files := $(shell find $(iso_dir) -type f ! -name "linker.ld")
+build_iso_files := $(addprefix $(build_dir)/, $(local_iso_files))
+kernel_bin := $(build_dir)/dist/kernel.bin
+iso := $(build_dir)/dist/x86_64/kernel.iso
 
-$(build_target_dir): $(shell find $(local_target_dir) -type f)
-	mkdir -p $(build_target_dir) && \
-	cp -r $(local_target_dir)/* $(build_target_dir)
+$(build_iso_files): $(build_dir)/% : %
+	mkdir -p "$(@D)" && \
+	cp "$<" "$@"
 
-build-x86_64: $(build_target_dir)
+$(kernel_bin): $(all_object_files)
+	mkdir -p "$(@D)" && \
+	ld -n -o "$@" -T targets/x86_64/linker.ld $(all_object_files)
 
-# .PHONY: build-x86_64
-# build-x86_64: $(all_object_files)
-# 	mkdir -p dist/x86_64 && \
-# 	ld -n -o dist/x86_64/kernel.bin -T targets/x86_64/linker.ld $(all_object_files) && \
-# 	cp dist/x86_64/kernel.bin targets/x86_64/iso/boot/kernel.bin && \
-# 	grub-mkrescue -d /usr/lib/grub/i386-pc -o dist/x86_64/kernel.iso targets/x86_64/iso
+$(iso): $(build_iso_files) $(kernel_bin)
+	cp $(kernel_bin) $(build_dir)/$(iso_dir)/boot && \
+	mkdir -p "$(@D)" && \
+	grub-mkrescue -d /usr/lib/grub/i386-pc -o $@ $(build_dir)/$(iso_dir)
+
+.PHONY: build-x86_64
+build-x86_64: $(iso)

@@ -13,8 +13,5 @@ if [[ "$1" =~ ^(-c|--clear)$ ]]; then
 	rm -rf "$build_dir" && mkdir -p "$build_dir"
 fi
 
-# make
 make build-x86_64
-
-# emulate
-# qemu-system-x86_64 -cdrom dist/x86_64/kernel.iso
+qemu-system-x86_64 -cdrom $build_dir/dist/x86_64/kernel.iso
