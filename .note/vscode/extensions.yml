@@ -25,3 +25,4 @@ C/C++:
   2:
     name: Makefile Tools
     author: microsoft.com
+    note: Unable to find a good Makefile formatter yet

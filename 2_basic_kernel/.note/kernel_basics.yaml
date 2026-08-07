@@ -1,0 +1,40 @@
+Boot process:
+  1: 
+    Name: Bios or UEFI
+    What they do: 
+      1: Power-On Self-Test (POST) - Check if your memory, CPU, and keyboard work right
+      2: Locate the main operating system files on your hard drive
+      3: Let you change basic settings like boot order, system time, and fan speed
+    Differences:
+      Bios (It is old): Uses a simple text screen, works slowly, and only supports hard drives up to 2 terabytes
+      Modern UEFI: |
+        Uses a graphical screen with mouse support, 
+        boots much faster, 
+        supports giant hard drives, 
+        and includes Secure Boot to block bad software
+  2: 
+    Name: Bootloader
+    Example: GRUB2
+    Started by: Either Bios or UEFI
+    How: The Bios or UEFI starts the Bootloader at CPU core 0
+    What Bootloader does:
+      1: Initializes Hardware - sets up basic computer parts like the CPU, memory (RAM), and input/output paths so they are ready to use
+      2: Locates the Operating System - search  hard drive, SSD, or USB stick for the os (kernel)
+      3: Loads kernel into RAM - It also pass the basic hardware information to the kernel
+      4: Hands Over Control - Tells the processor to start running the operating system, allowing the computer to fully boot up
+      5: Provides Recovery and Updates - On phones and embedded gadgets, it acts as a safety gate to safely update firmware or recover a device if software gets corrupted
+  3:
+    Name: Kernel
+    Started by: Bootloader
+    Need both C & assembly:
+      1: switching an x86 processor from 16-bit real mode to 32-bit or 64-bit protected mode requires writing directly to control registers (like CR0)
+      2: |
+        When a computer turns on, there is no stack memory, no heap, and no working C environment setup.
+        The kernel must use assembly to initialize the CPU, set up basic segment registers, and establish the stack before it can safely jump to the main C function
+      3: Context Switching (Multitasking)
+      4: Interrupt and System Call Handling
+      5: Setting up virtual memory, page tables, and flushing the Translation Lookaside Buffer (TLB) requires direct
+    Multiple Cores: Although the Bootloader starts the kernel on core 0, the kernel then starts to run on all the cores
+  
+
+

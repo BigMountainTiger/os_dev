@@ -1,0 +1,10 @@
+Name: The standard name should be "Makefile", although "makefile" is also recognized
+
+Tab: The indentation has to be tab in a Makefile
+
+Makefile location:
+  Default: the root of your current working directory where you run the make command
+  Specify a direct path to the file: |
+    make -f /path/to/your/Makefile
+  Change directories before executing: |
+    make -C /path/to/project/directory

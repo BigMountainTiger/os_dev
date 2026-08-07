@@ -1,0 +1,20 @@
+static pattern rule:
+  note: a:b:c
+  Target (a): The specific file or list of files to make
+  Target Pattern (b): Tells make how to extract the "stem" from the target name using %
+  Prerequisite Pattern (c): Tells make how to build the prerequisite names by plugging the extracted stem into a new pattern
+
+Example Code:
+  example: |
+    # The files to build
+    objects = foo.o bar.o
+
+    # Static pattern rule structured with multiple colons
+    $(objects): %.o: %.c
+        $(CC) -c $< -o $@
+
+  1: $(objects) are the explicit targets (foo.o and bar.o)
+  2: |
+    %.o is the target pattern matching foo.o and bar.o, capturing foo and bar as the stem
+  3: |
+    %.c is the prerequisite pattern, turning the stem into foo.c and bar.c

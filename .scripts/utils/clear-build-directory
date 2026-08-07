@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+if [ ! -v PROJECT_BASE ]; then
+	echo "Variables PROJECT_BASE needs to be set"
+	exit 1
+fi
+
+rm -rf $PROJECT_BASE/build

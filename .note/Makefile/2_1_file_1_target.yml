@@ -1,0 +1,28 @@
+Makefile:
+  1: Every standard target is fundamentally treated as a file name on the disk
+  2: When you run make <target>, the build system looks for a file matching that exact name to decide whether it needs to be created or updated
+
+A basic rule:
+  example: |
+    target_file: prerequisite_files
+      recipe_command
+  target_file: The actual file you want to build (e.g., main.o, app.exe)
+  prerequisite_files: The source files needed to create that target
+  recipe_command: The shell commands (indented with a Tab) that compile or generate the target_file
+
+How Make Decides to Build:
+  1. File does not exist: If the target file is missing, make runs the recipe to create it
+  2. File exists, but is older: If any prerequisite file has a newer timestamp than the target, make rebuilds the target
+  3. File exists and is newer: If the target is newer than all prerequisites, make skips the rule and says - target is up to date
+
+Phony Targets:
+  purpose: To tell make that a specific target is not a file
+  example: |
+    .PHONY: clean
+    clean:
+        rm -rf *
+  To run: |
+    make clean
+  Recommendations: >
+    Yes, you can declare all .PHONY targets together on a single line or right above each rule.
+    Both ways work in GNU Make, but putting them together keeps your file clean and easy to read.

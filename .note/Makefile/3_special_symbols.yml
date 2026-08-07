@@ -1,0 +1,47 @@
+Special symbols:
+  1: Automatic Variables (The $ Symbols)
+  2: Recipe Modifiers (Prefixes)
+  3: Wildcards and Pattern Matching
+  4: Variable Assignment Operators
+  5: Syntax and Layout Controls
+
+Automatic Variables (The $ Symbols):
+  1: $@ => The file name of the target of the rule
+  2: $< => The name of the first prerequisite (dependency)
+  3: $^ => The names of all prerequisites, separated by spaces (duplicates removed)
+  4: $+ => Identical to $^, but includes all prerequisites with duplications preserved
+  5: $? => The names of all prerequisites that are newer than the target
+  6: $* => The stem of a pattern rule (the text matched by the % symbol)
+  7: $$ => Escapes a dollar sign to pass a literal $ to the shell
+
+Recipe Modifiers (Prefixes):
+  1: |
+    @ => Suppresses echoing of the command. The command runs, but it does not print to the terminal
+  2: |
+    - => Ignores errors. If the command fails, Make continues running subsequent steps instead of aborting
+  3: |
+    + => Forces execution, even if Make is run in "dry-run" or "question" mode (make -n)
+
+Wildcards and Pattern Matching:
+  1: |
+    % => The pattern matching element. Used in pattern rules (e.g., %.o: %.c) to create a blueprint for transforming any .c file into a .o file
+  2: |
+    * => The standard filename wildcard, handled the same way as the command-line shell
+
+Variable Assignment Operators:
+  1: |
+    = => Lazy assignment. The variable is evaluated only when it is actually used in a rule
+  2: |
+    := => Immediate assignment. The variable is evaluated exactly once, right at the line where it is defined
+  3: |
+    ?= => Conditional assignment. Assigns the value only if the variable is not already defined
+  4: |
+    += => Append operator. Appends the specified text to the existing value of the variable
+
+Syntax and Layout Controls:
+  1: |
+    \t (Tab) => The required indent character for recipe commands. Using spaces instead of a raw Tab character will throw an error
+  2: |
+    # => Starts a comment line. All characters following it until the end of the line are ignored
+  3: |
+    \ => The line continuation character. It splits long, single-line terminal commands across multiple lines for better readability
