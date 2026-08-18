@@ -1,0 +1,40 @@
+Videos:
+  1:
+    name: x86 Assembly with NASM
+    link: https://www.youtube.com/watch?v=yBO-EJoVDo0&list=PL2EF13wm-hWCoj6tUBGUmrkJmH1972dBB
+    finished: 38 of 48
+    Need to revisit:
+      complement of 2:
+      23 & 24:
+        system calls:
+          reference: https://syscall.sh/about
+        Note:
+          1: Stack is important for functions because the return address is pushed to the stack
+          2: Need to pop everything added to the stack by the function before RET
+      30:
+        disk: LBA vs CHS
+      31:
+        Important: 
+          What: We have tools to put bootloader and kernel at exact location on a disk image
+          Tools: |
+            dd (Disk copy and convert, nick name to disk destroyer)
+            mkfs.fat - 12/16/32
+            mkfs.ext(2|3|4)
+        FAT32: Old and univeral - /boot/efi in linux
+        Ext4: Linux and new
+      32 & 33:
+        Important: 
+          1: The bootloader can read a specific file (kernel) of the disk image into memory
+          2: Jump to run the kernel
+      37: Grub - Real mode (16 bit), prorected mode (32 bit), long mode (64 bit)
+      38: 
+        What: 
+          1: GDT - Global Decriptor Table
+          2: LDT - Local Descriptor Table
+        How many: One GDT per CPU core
+  2:
+    name: Making an OS (x86)
+    link: https://www.youtube.com/watch?v=yBO-EJoVDo0&list=PL2EF13wm-hWCoj6tUBGUmrkJmH1972dBB
+  3:
+    name: Bare Metal Embedded C Programming
+    link: https://www.youtube.com/watch?v=qWqlkCLmZoE&list=PLERTijJOmYrDiiWd10iRHY0VRHdJwUH4g

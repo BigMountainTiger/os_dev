@@ -1,3 +1,6 @@
+How C Really Works: |
+  https://www.youtube.com/watch?v=DiJU4RxBwaA
+
 1: Any non-static function with external linkage must have a globally unique name across the entire program
 2:
   Static function: a function whose visibility is restricted to the specific source file (or translation unit) in which it is defined
